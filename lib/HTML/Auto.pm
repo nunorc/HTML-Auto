@@ -1,0 +1,142 @@
+package HTML::Auto;
+
+use warnings;
+use strict;
+
+use Template;
+use HTML::Auto::Templates;
+use Data::Dumper;
+
+require Exporter;
+our @ISA = qw(Exporter);
+our @EXPORT_OK = qw(matrix);
+
+=head1 NAME
+
+HTML::Auto - The great new HTML::Auto!
+
+=head1 VERSION
+
+Version 0.01
+
+=cut
+
+our $VERSION = '0.01';
+
+
+=head1 SYNOPSIS
+
+Quick summary of what the module does.
+
+Perhaps a little code snippet.
+
+    use HTML::Auto;
+
+    my $foo = HTML::Auto->new();
+    ...
+
+=head1 EXPORT
+
+A list of functions that can be exported.  You can delete this section
+if you don't export anything, such as for a purely object-oriented module.
+
+=head1 SUBROUTINES/METHODS
+
+=head2 function1
+
+=cut
+
+sub matrix {
+	my ($cols,$lines,$data,$options) = @_;
+
+	# pre-process data
+	foreach (@$cols) {
+		$_ = ucfirst($_);
+	}
+	foreach (@$lines) {
+		$_ = ucfirst($_);
+	}
+
+	# build html from template
+   my $template_config = {
+         INCLUDE_PATH => [ 'templates' ],
+      };
+   my $template = Template->new({
+        LOAD_TEMPLATES => [ HTML::Auto::Templates->new($template_config) ],
+   });
+	my $html;
+	my $vars = {
+			cols => $cols,
+			lines => $lines,
+			data => $data,
+		};
+	my $template_name = 'matrix';
+   $template->process($template_name, $vars, \$html);
+
+	$html;
+}
+
+=head2 function2
+
+=cut
+
+=head1 AUTHOR
+
+Nuno Carvalho, C<< <smash at cpan.org> >>
+
+=head1 BUGS
+
+Please report any bugs or feature requests to C<bug-html-auto at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=HTML-Auto>.  I will be notified, and then you'll
+automatically be notified of progress on your bug as I make changes.
+
+
+
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc HTML::Auto
+
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=HTML-Auto>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/HTML-Auto>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/HTML-Auto>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/HTML-Auto/>
+
+=back
+
+
+=head1 ACKNOWLEDGEMENTS
+
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2010 Nuno Carvalho.
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
+
+
+=cut
+
+1; # End of HTML::Auto
