@@ -9,7 +9,7 @@ use Data::Dumper;
 
 require Exporter;
 our @ISA = qw(Exporter);
-our @EXPORT_OK = qw(matrix);
+our @EXPORT_OK = qw(matrix h v);
 
 =head1 NAME
 
@@ -57,6 +57,42 @@ sub matrix {
 		$_ = ucfirst($_);
 	}
 
+	my $vars = {
+			cols => $cols,
+			lines => $lines,
+			data => $data,
+		};
+	my $template_name = 'matrix';
+
+	__process($template_name, $vars);
+}
+
+sub h {
+	my (@list) = @_;
+
+	my $vars = {
+			list => [@list],
+		};
+	my $template_name = 'h';
+
+	__process($template_name, $vars);
+}
+
+sub v {
+   my (@list) = @_;
+
+   my $vars = {
+         list => [@list],
+      };
+   my $template_name = 'v';
+
+   __process($template_name, $vars);
+}
+
+
+sub __process {
+	my ($template_name,$vars) = @_;
+
 	# build html from template
    my $template_config = {
          INCLUDE_PATH => [ 'templates' ],
@@ -65,12 +101,6 @@ sub matrix {
         LOAD_TEMPLATES => [ HTML::Auto::Templates->new($template_config) ],
    });
 	my $html;
-	my $vars = {
-			cols => $cols,
-			lines => $lines,
-			data => $data,
-		};
-	my $template_name = 'matrix';
    $template->process($template_name, $vars, \$html);
 
 	$html;

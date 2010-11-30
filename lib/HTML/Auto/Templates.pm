@@ -75,10 +75,25 @@ td {
 		[% END %]
 		</tr>
 		[% i_c = i_c + 1 %]
-		<!-- zbr [% i_c %] [% j_c %] -->
 	[% END %]
 </table>
 EOT
+,
+'h' => <<'EOT'
+<div>
+	[% FOREACH i IN list %]
+		<div style="float: left;">[% i %]</div>
+	[% END %]
+	<span style="clear: both;"></div>
+</div>
+EOT
+,
+'v' => <<'EOT'
+[% FOREACH i IN list %]
+	<div>[% i %]</div>
+[% END %]
+EOT
+
 };
 
 sub _template_modified {
