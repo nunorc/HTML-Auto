@@ -6,15 +6,15 @@ use strict;
 
 =head1 NAME
 
-HTML::Auto::Templates - this module store the templates
+HTML::Auto::Templates - this module stores the templates
 
 =head1 VERSION
 
-Version 0.01
+Version 0.01_1
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.01_1';
 
 my $templates = {
 
@@ -96,11 +96,23 @@ EOT
 
 };
 
+=head2 _template_modified
+
+TODO
+
+=cut
+
 sub _template_modified {
     my($self,$path) = @_;
 
    return 1;
 }
+
+=head2 _template_content
+
+TODO
+
+=cut
 
 sub _template_content {
     my($self,$path) = @_;

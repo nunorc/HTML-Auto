@@ -17,11 +17,11 @@ HTML::Auto - The great new HTML::Auto!
 
 =head1 VERSION
 
-Version 0.01
+Version 0.01_1
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.01_1';
 
 
 =head1 SYNOPSIS
@@ -35,14 +35,9 @@ Perhaps a little code snippet.
     my $foo = HTML::Auto->new();
     ...
 
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
+=head2 matrix
 
 =cut
 
@@ -67,6 +62,12 @@ sub matrix {
 	__process($template_name, $vars);
 }
 
+=head2 h
+
+A function to allow horizontal composition.
+
+=cut
+
 sub h {
 	my (@list) = @_;
 
@@ -77,6 +78,12 @@ sub h {
 
 	__process($template_name, $vars);
 }
+
+=head2 v
+
+A function to allow vertical composition.
+
+=cut
 
 sub v {
    my (@list) = @_;
@@ -89,6 +96,11 @@ sub v {
    __process($template_name, $vars);
 }
 
+=head2 __process
+
+TODO
+
+=cut
 
 sub __process {
 	my ($template_name,$vars) = @_;
@@ -105,10 +117,6 @@ sub __process {
 
 	$html;
 }
-
-=head2 function2
-
-=cut
 
 =head1 AUTHOR
 
