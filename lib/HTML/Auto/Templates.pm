@@ -65,12 +65,16 @@ td {
 		[% END %]
 	</tr>
 	[% i_c = 0 %]
-	[% FOREACH i IN data %]
+	[% FOREACH i IN vals %]
 		<tr>
 		<td class="fst">[% lines.shift -%]</td>
 		[% j_c = 0 %]
 		[% FOREACH j IN i %]
-			<td[% IF i_c == j_c %] class="mid"[% END %]>[% j %]</td>
+			<td[% IF i_c == j_c %] class="mid"[% END %]
+			[% FOREACH att IN attrs.$i_c.$j_c.keys %]
+				[% att %]="[% attrs.$i_c.$j_c.$att %]" 
+			[% END %]
+			>[% j %]</td>
 			[% j_c = j_c + 1 %]
 		[% END %]
 		</tr>

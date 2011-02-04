@@ -46,6 +46,30 @@ Simple example:
           h($m,$m),
         );
 
+Using attributes:
+
+  use HTML::Auto qw/matrix h v/;
+
+  my @cols = qw/c1 c2/;
+  my @lines = qw/l1 l2/;
+  my $data =
+     [
+       [
+         {v => 1, a => { style => 'background: green'}},
+         2
+       ],
+       [
+         {v => 3, a => {class => 'foo'}},
+         {v => 4, a => {style => 'color: red'}}
+       ]
+     ];
+
+  my $m = matrix(\@cols,\@lines,$data);
+
+  print v(
+          h($m)
+        );
+ 
 =head1 SUBROUTINES/METHODS
 
 =head2 matrix
@@ -63,10 +87,31 @@ sub matrix {
 		$_ = ucfirst($_);
 	}
 
+	my $vals = [];
+	my $attrs = [];
+
+	foreach my $row (@$data){
+		my $vrow = [];
+		my $arow = [];
+		foreach(@$row){
+			if (ref($_)){
+				push @$vrow, $_->{v};
+				push @$arow, $_->{a};
+			}
+			else {
+				push @$vrow, $_;
+				push @$arow, undef;
+			}
+		}
+		push @$vals, $vrow;
+		push @$attrs, $arow;
+	}
+
 	my $vars = {
 			cols => $cols,
 			lines => $lines,
-			data => $data,
+			vals => $vals,
+			attrs => $attrs,
 		};
 	my $template_name = 'matrix';
 
