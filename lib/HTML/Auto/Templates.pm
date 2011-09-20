@@ -14,7 +14,7 @@ Version 0.01_2
 
 =cut
 
-our $VERSION = '0.01_2';
+our $VERSION = '0.01_3';
 
 my $templates = {
 
