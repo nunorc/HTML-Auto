@@ -1,5 +1,8 @@
 Revision history for HTML-Auto
 
+0.01      Sun Sep 25 16:45:04 WEST 2011
+          First version.
+
 0.01_3    Tue Sep 20 23:24:32 WEST 2011
           Matrix elemets may be scalars.
 
