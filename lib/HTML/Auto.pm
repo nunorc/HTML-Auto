@@ -13,7 +13,7 @@ our @EXPORT_OK = qw(matrix h v);
 
 =head1 NAME
 
-HTML::Auto - The great new HTML::Auto!
+HTML::Auto - automatic write HTML for common elements
 
 =head1 VERSION
 
@@ -152,12 +152,6 @@ sub v {
    __process($template_name, $vars);
 }
 
-=head2 __process
-
-TODO
-
-=cut
-
 sub __process {
 	my ($template_name,$vars) = @_;
 
@@ -177,6 +171,7 @@ sub __process {
 =head1 AUTHOR
 
 Nuno Carvalho, C<< <smash at cpan.org> >>
+André Santos, C<< <andrefs at cpan.org> >>
 
 =head1 BUGS
 
