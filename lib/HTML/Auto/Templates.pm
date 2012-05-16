@@ -100,7 +100,11 @@ span.vertical {
 			[% FOREACH att IN attrs.$i_c.$j_c.keys %]
 				[% att %]="[% attrs.$i_c.$j_c.$att %]" 
 			[% END %]
-			>[% j %]</td>
+			>[% j %]
+			[% IF more.$i_c.$j_c %]
+				<span>[% more.$i_c.$j_c %]</span> 
+			[% END %]
+			</td> 
 			[% j_c = j_c + 1 %]
 		[% END %]
 		</tr>

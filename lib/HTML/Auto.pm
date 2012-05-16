@@ -89,27 +89,27 @@ sub matrix {
 
 	my $vals = [];
 	my $attrs = [];
-#	my $more = [];
+	my $more = [];
 
 	foreach my $row (@$data){
 		my $vrow = [];
 		my $arow = [];
-	#	my $mrow = [];
+		my $mrow = [];
 		foreach(@$row){
 			if (ref($_)){
 				push @$vrow, $_->{v};
 				push @$arow, $_->{a};
-	#			push @$mrow, $_->{more_info};
+				push @$mrow, $_->{more_info};
 			}
 			else {
 				push @$vrow, $_;
 				push @$arow, undef;
-		#		push @$mrow, undef;
+				push @$mrow, undef;
 			}
 		}
 		push @$vals, $vrow;
 		push @$attrs, $arow;
-	#	push @$more, $mrow;
+		push @$more, $mrow;
 	}
 
 	my $vars = {
@@ -117,7 +117,7 @@ sub matrix {
 			lines => $lines,
 			vals => $vals,
 			attrs => $attrs,
-	#		more => $more,
+			more => $more,
 		};
 	my $template_name = 'matrix';
 
