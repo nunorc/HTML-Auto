@@ -6,15 +6,15 @@ use strict;
 
 =head1 NAME
 
-HTML::Auto::Templates - this module stores the templates
+HTML::Auto::Templates - this module stores HTML::Auto templates
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my $templates = {
 
@@ -206,7 +206,7 @@ L<http://search.cpan.org/dist/HTML-Auto/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2010 Nuno Carvalho.
+Copyright 2012 Nuno Carvalho.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published

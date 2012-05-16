@@ -13,15 +13,15 @@ our @EXPORT_OK = qw(matrix h v);
 
 =head1 NAME
 
-HTML::Auto - The great new HTML::Auto!
+HTML::Auto - automatic write HTML for common elements
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -158,12 +158,6 @@ sub v {
    __process($template_name, $vars);
 }
 
-=head2 __process
-
-TODO
-
-=cut
-
 sub __process {
 	my ($template_name,$vars) = @_;
 
@@ -183,6 +177,7 @@ sub __process {
 =head1 AUTHOR
 
 Nuno Carvalho, C<< <smash at cpan.org> >>
+André Santos, C<< <andrefs at cpan.org> >>
 
 =head1 BUGS
 
@@ -228,7 +223,7 @@ L<http://search.cpan.org/dist/HTML-Auto/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2010 Nuno Carvalho.
+Copyright 2012 Nuno Carvalho.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
