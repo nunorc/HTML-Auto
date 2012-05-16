@@ -20,7 +20,45 @@ my $templates = {
 
 'matrix' => <<'EOT'
 <style type="text/css">
-span {
+td:hover {
+    background-color: #aaaaaa;
+}
+table.main th {
+    padding-top: 70px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20px;
+    background-color: #aaaaaa;
+}
+table.main td {
+    text-align: center;
+    width: 30px;
+    background-color: #eeeeee;
+}
+td.more_info{ 
+    position:relative;
+    z-index:24;
+    text-decoration:none;
+    cursor: default;
+    color: black;
+	width: 60px;
+}
+td.more_info:hover{
+    z-index:25;
+}
+td.more_info span{display: none}
+td.more_info:hover span { 
+    display:block;
+    position:absolute;
+    top:2em; left:2em; width:24em;
+    border:1px solid #0cf;
+    background-color:#cff; color:#000;
+    text-align: left;
+    font-size: 80%;
+    text-decoration: none;
+} 
+span.vertical {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     writing-mode: tb-rl;
@@ -30,21 +68,8 @@ span {
     /*height: 70px;*/
     white-space: nowrap;
 }
-th {
-    padding-top: 50px;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    width: 20px;
-    background-color: #aaaaaa;
-}
-td {
-    text-align: center;
-    width: 20px;
-    background-color: #eeeeee;
-}
 .fst {
-    width: 60px;
+    width: 80px;
     font-weight: bold;
     background-color: #aaaaaa;
     padding: 5px;
@@ -57,11 +82,11 @@ td {
 }
 </style>
 
-<table>
+<table class="main">
 	<tr>
 		<th class="empty"></th>
 		[% FOREACH i IN cols %]
-			<th><span>[% i -%]</span></th>
+			<th><span class="vertical">[% i -%]</span></th>
 		[% END %]
 	</tr>
 	[% i_c = 0 %]
@@ -70,7 +95,7 @@ td {
 		<td class="fst">[% lines.shift -%]</td>
 		[% j_c = 0 %]
 		[% FOREACH j IN i %]
-			<td[% IF i_c == j_c %] class="mid"[% END %]
+			<td[% IF i_c == j_c %][% class = "mid" %][% END %]
 			[% FOREACH att IN attrs.$i_c.$j_c.keys %]
 				[% att %]="[% attrs.$i_c.$j_c.$att %]" 
 			[% END %]
