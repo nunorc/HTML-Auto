@@ -69,6 +69,27 @@ Using attributes:
   print v(
           h($m)
         );
+
+With mouse-over span:
+
+  use HTML::Auto qw/matrix h v/;
+
+  my @cols = qw/c1 c2/;
+  my @lines = qw/l1 l2/;
+  my $data =
+     [[1,2],
+	  [3,
+	  { v=> 4,
+	    more_info => "This is a pop-up!"
+	  }]
+	 ];
+
+
+  my $m = matrix(\@cols,\@lines,$data);
+
+  print v(
+          h($m)
+        );
  
 =head1 SUBROUTINES/METHODS
 

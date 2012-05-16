@@ -96,7 +96,7 @@ span.vertical {
 	<tr>
 		<th class="empty"></th>
 		[% FOREACH i IN cols %]
-			<th><span class="vertical">[% i %]</span></th>
+			<th><span class="vertical">[% i -%]</span></th>
 		[% END %]
 	</tr>
 	[% i_c = 0 %]
@@ -105,14 +105,23 @@ span.vertical {
 		<td class="fst">[% lines.shift -%]</td>
 		[% j_c = 0 %]
 		[% FOREACH j IN i %]
-			<td[% IF i_c == j_c %][% class = "mid" %][% END %]
-			[% FOREACH att IN attrs.$i_c.$j_c.keys %]
-				[% att %]="[% attrs.$i_c.$j_c.$att %]" 
-			[% END %]
+			<td
+				[% IF i_c == j_c %]
+					[% class = "mid" %]
+				[% END %]
+				[% IF more.$i_c.$j_c %]
+					[% class = "more_info " _  class %]
+				[% END %]
+				[% class = class _  attrs.$i_c.$j_c.class %]
+				[% attrs.$i_c.$j_c.delete('class') %]
+				class="[% class %]" 
+				[% FOREACH att IN attrs.$i_c.$j_c.keys %]
+					[% att %]="[% attrs.$i_c.$j_c.$att %]" 
+				[% END %]
 			>[% j %]
-			[% IF more.$i_c.$j_c %]
-				<span>[% more.$i_c.$j_c %]</span> 
-			[% END %]
+				[% IF more.$i_c.$j_c %]
+					<span>[% more.$i_c.$j_c %]</span> 
+				[% END %]
 			</td> 
 			[% j_c = j_c + 1 %]
 		[% END %]
