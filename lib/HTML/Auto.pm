@@ -119,6 +119,8 @@ sub matrix {
 			attrs => $attrs,
 			more => $more,
 		};
+	$vars->{css} = $options->{css}
+		if $options->{css};
 	my $template_name = 'matrix';
 
 	__process($template_name, $vars);

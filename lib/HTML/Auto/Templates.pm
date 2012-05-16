@@ -36,25 +36,31 @@ table.main td {
     width: 30px;
     background-color: #eeeeee;
 }
-td.more_info{ 
+td.more_info { 
     position:relative;
-    z-index:24;
+	z-index:24;
     text-decoration:none;
     cursor: default;
     color: black;
-	width: 60px;
+	width: 80px;
 }
 td.more_info:hover{
     z-index:25;
 }
-td.more_info td { width: auto }
-td.more_info span{display: none}
+td.more_info td {
+	width: auto;
+}
+
+td.more_info span {
+	display: none
+}
 td.more_info:hover span { 
     display:block;
     position:absolute;
-    top:2em; left:2em; width:24em;
-    border:1px solid #0cf;
-    background-color:#cff; color:#000;
+    border:1px solid #ccc;
+	min-width:24em;
+    background-color:#fff;
+	color:#000;
     text-align: left;
     font-size: 80%;
     text-decoration: none;
@@ -81,13 +87,16 @@ span.vertical {
 .mid {
     background-color: #cccccc;
 }
+[% IF css %]
+[% css %]
+[% END %]
 </style>
 
 <table class="main">
 	<tr>
 		<th class="empty"></th>
 		[% FOREACH i IN cols %]
-			<th><span class="vertical">[% i -%]</span></th>
+			<th><span class="vertical">[% i %]</span></th>
 		[% END %]
 	</tr>
 	[% i_c = 0 %]
