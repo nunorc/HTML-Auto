@@ -47,6 +47,7 @@ td.more_info{
 td.more_info:hover{
     z-index:25;
 }
+td.more_info td { width: auto }
 td.more_info span{display: none}
 td.more_info:hover span { 
     display:block;
