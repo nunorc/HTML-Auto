@@ -20,10 +20,17 @@ my $templates = {
 
 'matrix' => <<'EOT'
 <style type="text/css">
-td:hover {
-    background-color: #aaaaaa;
+span.vertical {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    writing-mode: tb-rl;
+    filter: flipv fliph;
+    display: block;
+    width: 20px;
+    white-space: nowrap;
 }
-table.main th {
+
+table.auto th {
     padding-top: 70px;
     padding-bottom: 10px;
     padding-left: 5px;
@@ -31,11 +38,32 @@ table.main th {
     width: 20px;
     background-color: #aaaaaa;
 }
-table.main td {
+
+table.auto td {
     text-align: center;
     width: 30px;
     background-color: #eeeeee;
 }
+
+table.auto td.fst {
+    width: 80px;
+    font-weight: bold;
+    background-color: #aaaaaa;
+    padding: 5px;
+}
+
+th.empty {
+    background-color: white !important;
+}
+
+table.auto td.mid {
+    background-color: #cccccc;
+}
+
+td:hover {
+    background-color: #aaaaaa;
+}
+
 td.more_info { 
     position:relative;
 	z-index:24;
@@ -44,16 +72,19 @@ td.more_info {
     color: black;
 	width: 80px;
 }
+
 td.more_info:hover{
     z-index:25;
 }
+
 td.more_info td {
 	width: auto;
 }
 
 td.more_info span {
-	display: none
+	display: none;
 }
+
 td.more_info:hover span { 
     display:block;
     position:absolute;
@@ -65,38 +96,17 @@ td.more_info:hover span {
     font-size: 80%;
     text-decoration: none;
 } 
-span.vertical {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    writing-mode: tb-rl;
-    filter: flipv fliph;
-    display: block;
-    width: 20px;
-    /*height: 70px;*/
-    white-space: nowrap;
-}
-.fst {
-    width: 80px;
-    font-weight: bold;
-    background-color: #aaaaaa;
-    padding: 5px;
-}
-.empty {
-    background-color: white;
-}
-.mid {
-    background-color: #cccccc;
-}
+
 [% IF css %]
 [% css %]
 [% END %]
 </style>
 
-<table class="main">
+<table class="auto">
 	<tr>
-		<th class="empty"></th>
+		<th class="empty"> </th>
 		[% FOREACH i IN cols %]
-			<th><span class="vertical">[% i -%]</span></th>
+			<th> <span class="vertical">[% i -%]</span></th>
 		[% END %]
 	</tr>
 	[% i_c = 0 %]
@@ -106,6 +116,7 @@ span.vertical {
 		[% j_c = 0 %]
 		[% FOREACH j IN i %]
 			<td
+				[% class = "" %]
 				[% IF i_c == j_c %]
 					[% class = "mid" %]
 				[% END %]
@@ -114,7 +125,9 @@ span.vertical {
 				[% END %]
 				[% class = class _  attrs.$i_c.$j_c.class %]
 				[% attrs.$i_c.$j_c.delete('class') %]
-				class="[% class %]" 
+				[% IF class.length != 0 %]
+					class="[% class %]" 
+				[% END %]
 				[% FOREACH att IN attrs.$i_c.$j_c.keys %]
 					[% att %]="[% attrs.$i_c.$j_c.$att %]" 
 				[% END %]
