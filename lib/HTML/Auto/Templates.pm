@@ -123,7 +123,9 @@ td.more_info:hover span {
 				[% IF more.$i_c.$j_c %]
 					[% class = "more_info " _  class %]
 				[% END %]
-				[% class = class _  attrs.$i_c.$j_c.class %]
+				[% IF attrs.$i_c.$j_c.class %]
+					[% class = class _ " " _ attrs.$i_c.$j_c.class %]
+				[% END %]
 				[% attrs.$i_c.$j_c.delete('class') %]
 				[% IF class.length != 0 %]
 					class="[% class %]" 

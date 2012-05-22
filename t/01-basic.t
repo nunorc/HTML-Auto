@@ -4,7 +4,6 @@ use Test::More tests => 4;
 use HTML::Auto qw/matrix h v/;
 use Data::Dumper;
 
-
 my $tests = {
   'simple h test' => {
     test => "h('l','r')",

@@ -90,6 +90,31 @@ With mouse-over span:
   print v(
           h($m)
         );
+
+Passing additional CSS:
+
+  use HTML::Auto qw/matrix h v/;
+
+  my @cols = qw/c1 c2/;
+  my @lines = qw/l1 l2/;
+  my $data =
+     [
+       [
+         {v => 1, a => { class => 'warn'}},
+         2
+       ],
+       [3,4]
+     ];
+
+  my $options = { css => '.warn { background-color: yellow !important; }' };
+
+  my $m = matrix(\@cols,\@lines,$data,$options);
+
+  print v(
+          h($m)
+        );
+
+
  
 =head1 SUBROUTINES/METHODS
 
