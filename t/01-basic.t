@@ -3,8 +3,6 @@
 use Test::More tests => 4;
 use HTML::Auto qw/matrix h v/;
 use Data::Dumper;
-use Data::Dump qw/dump/;
-use feature qw/say/;
 
 
 my $tests = {
@@ -27,9 +25,6 @@ my $tests = {
 };
 
 foreach (keys %$tests) {
-	say $_;
-	say "'".$tests->{$_}->{gold}."'";
-	say "'".run($tests->{$_}->{test})."'";
   ok(run($tests->{$_}->{test}) eq $tests->{$_}->{gold}, $_);
 }
 
