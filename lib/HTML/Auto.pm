@@ -11,17 +11,19 @@ require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(matrix h v);
 
+=encoding utf-8
+
 =head1 NAME
 
 HTML::Auto - automatic write HTML for common elements
 
 =head1 VERSION
 
-Version 0.02
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 =head1 SYNOPSIS

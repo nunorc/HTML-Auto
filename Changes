@@ -1,5 +1,8 @@
 Revision history for HTML-Auto
 
+0.04      Tue Jun  5 16:02:52 WEST 2012
+          Fixed UTF-8 in POD
+
 0.03      Tue May 22 22:50:31 WEST 2012
           Cells can have a hover pop-up.
 		  Additional CSS can be provided.
