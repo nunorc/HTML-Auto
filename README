@@ -1,7 +1,7 @@
 HTML-Auto
 
 This module attempts to provide easy access to some typical structures
-used in HTML, for example matrixes. The module is still in heavy
+used in HTML, for example matrices. The module is still in heavy
 development.
 
 INSTALLATION
@@ -33,15 +33,4 @@ You can also look for information at:
 
     Search CPAN
         http://search.cpan.org/dist/HTML-Auto/
-
-
-LICENSE AND COPYRIGHT
-
-Copyright (C) 2010 Nuno Carvalho
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
 
