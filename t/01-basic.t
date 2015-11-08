@@ -32,8 +32,8 @@ sub run {
 }
 
 sub clean {
-  my $_ = shift;
-  $_ =~ s/^\s+|\s+$//sg;
-  $_ =~ s/\s+/ /sg;
-  return $_;
+  my ($str) = @_;
+  $str =~ s/^\s+|\s+$//sg;
+  $str =~ s/\s+/ /sg;
+  return $str;
 }
