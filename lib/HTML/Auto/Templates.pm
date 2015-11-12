@@ -4,6 +4,8 @@ use base qw/Template::Provider/;
 use warnings;
 use strict;
 
+use File::Basename;
+
 =head1 NAME
 
 HTML::Auto::Templates - this module stores HTML::Auto templates
@@ -182,10 +184,10 @@ TODO
 =cut
 
 sub _template_content {
-    my($self,$path) = @_;
+  my ($self, $path) = @_;
 
-   $path =~ s#^templates/##;
-    $self->debug("get $path") if $self->{DEBUG};
+  $path = basename($path);;
+  $self->debug("get $path") if $self->{DEBUG};
 
    my $data = $templates->{$path};
    my $error = "error: $path not found";

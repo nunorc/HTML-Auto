@@ -12,8 +12,9 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     PREREQ_PM => {
-        'Test::More' => 0,
-        'Template' => 0,
+        'File::Basename' => 0,
+        'Test::More'     => 0,
+        'Template'       => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'HTML-Auto-*' },
