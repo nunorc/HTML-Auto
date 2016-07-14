@@ -118,9 +118,33 @@ Passing additional CSS:
 
 
  
-=head1 SUBROUTINES/METHODS
+=head1 FUNCTIONS
 
 =head2 matrix
+
+Build a matrix. Some options are available to pass to the matrix function:
+
+=over 6
+
+=item C<diagonal>
+
+Highlight the diagonal of the matrix.
+
+  my $m = matrix(\@cols,\@lines,$data, {diagonal => 1});
+
+=item C<format>
+
+Pass a string to be used by the C<format> filter in the TT2 template.
+
+  my $m = matrix(\@cols,\@lines,$data, {format => '%.6f'});
+
+=item C<ucfirst>
+
+Option to uppercase first letter in columns and lines labels.
+
+  my $m = matrix(\@cols,\@lines,$data, {ucfirst => 1});
+
+=back
 
 =cut
 
