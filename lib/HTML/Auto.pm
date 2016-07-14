@@ -127,12 +127,13 @@ Passing additional CSS:
 sub matrix {
 	my ($cols,$lines,$data,$options) = @_;
 
-	# pre-process data
-	foreach (@$cols) {
-		$_ = ucfirst($_);
-	}
-	foreach (@$lines) {
-		$_ = ucfirst($_);
+	if ($options->{ucfirst}) {
+		foreach (@$cols) {
+			$_ = ucfirst($_);
+		}
+		foreach (@$lines) {
+			$_ = ucfirst($_);
+		}
 	}
 
 	my $vals = [];
