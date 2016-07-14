@@ -12,11 +12,11 @@ HTML::Auto::Templates - this module stores HTML::Auto templates
 
 =head1 VERSION
 
-Version 0.02
+Version 0.07
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 my $templates = {
 

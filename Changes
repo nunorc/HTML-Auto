@@ -1,5 +1,9 @@
 Revision history for HTML-Auto
 
+0.07      Thu Jul 14 15:46:33 WEST 2016
+          * Update default CSS.
+          * Add options to the matrix function: diagonal, ucfirst, and format.
+
 0.06      Thu Nov 12 20:55:02 WET 2015
           Handle paths correctly in Windows too (reported by CHORNY).
 
