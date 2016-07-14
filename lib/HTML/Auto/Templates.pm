@@ -136,7 +136,7 @@ td.more_info:hover span {
 				[% FOREACH att IN attrs.$i_c.$j_c.keys %]
 					[% att %]="[% attrs.$i_c.$j_c.$att %]" 
 				[% END %]
-			>[% j %]
+			>[% IF myformat %][% j | format(myformat) %][% ELSE %][% j %][% END %]
 				[% IF more.$i_c.$j_c %]
 					<span>[% more.$i_c.$j_c %]</span> 
 				[% END %]

@@ -170,6 +170,8 @@ sub matrix {
 		};
 	$vars->{css} = $options->{css}
 		if $options->{css};
+	$vars->{myformat} = $options->{format}
+		if $options->{format};
 	my $template_name = 'matrix';
 
 	__process($template_name, $vars);
