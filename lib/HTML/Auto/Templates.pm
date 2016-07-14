@@ -46,6 +46,7 @@ table.auto td {
     text-align: center;
     width: 30px;
     background-color: #eeeeee;
+    padding: 6px;
 }
 
 table.auto td.fst {
