@@ -23,8 +23,9 @@ my $templates = {
 'matrix' => <<'EOT'
 <style type="text/css">
 span.vertical {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
     writing-mode: tb-rl;
     filter: flipv fliph;
     display: block;
@@ -33,7 +34,7 @@ span.vertical {
 }
 
 table.auto th {
-    padding-top: 70px;
+    padding-top: 24px;
     padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
