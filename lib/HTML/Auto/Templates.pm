@@ -120,7 +120,7 @@ td.more_info:hover span {
 		[% FOREACH j IN i %]
 			<td
 				[% class = "" %]
-				[% IF i_c == j_c %]
+				[% IF diagonal AND i_c == j_c %]
 					[% class = "mid" %]
 				[% END %]
 				[% IF more.$i_c.$j_c %]

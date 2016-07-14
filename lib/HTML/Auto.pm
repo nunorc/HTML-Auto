@@ -172,8 +172,10 @@ sub matrix {
 		if $options->{css};
 	$vars->{myformat} = $options->{format}
 		if $options->{format};
-	my $template_name = 'matrix';
+	$vars->{diagonal} = $options->{diagonal}
+		if $options->{diagonal};
 
+	my $template_name = 'matrix';
 	__process($template_name, $vars);
 }
 
