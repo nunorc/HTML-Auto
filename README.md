@@ -4,7 +4,7 @@ HTML::Auto - write HTML for common elements
 
 # VERSION
 
-version 0.08
+version 0.09
 
 # SYNOPSIS
 
