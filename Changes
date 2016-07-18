@@ -1,6 +1,8 @@
 Revision history for HTML-Auto
 
 {{$NEXT}}
+          * Small documentation updates.
+          * Fix white spaces.
 
 0.08      2016-07-18 16:42:52+01:00 Europe/Lisbon
           * Move to dzil.

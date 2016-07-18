@@ -60,11 +60,11 @@ td:hover {
 
 td.more_info { 
     position:relative;
-	z-index:24;
+    z-index:24;
     text-decoration:none;
     cursor: default;
     color: black;
-	width: 80px;
+    width: 80px;
 }
 
 td.more_info:hover{
@@ -72,20 +72,20 @@ td.more_info:hover{
 }
 
 td.more_info td {
-	width: auto;
+    width: auto;
 }
 
 td.more_info span {
-	display: none;
+    display: none;
 }
 
 td.more_info:hover span { 
     display:block;
     position:absolute;
     border:1px solid #ccc;
-	min-width:24em;
+    min-width:24em;
     background-color:#fff;
-	color:#000;
+    color:#000;
     text-align: left;
     font-size: 80%;
     text-decoration: none;
@@ -97,83 +97,68 @@ td.more_info:hover span {
 </style>
 
 <table class="auto">
-	<tr>
-		<th class="empty"> </th>
-		[% FOREACH i IN cols %]
-			<th> <span class="vertical">[% i -%]</span></th>
-		[% END %]
-	</tr>
-	[% i_c = 0 %]
-	[% FOREACH i IN vals %]
-		<tr>
-		<td class="fst">[% lines.shift -%]</td>
-		[% j_c = 0 %]
-		[% FOREACH j IN i %]
-			<td
-				[% class = "" %]
-				[% IF diagonal AND i_c == j_c %]
-					[% class = "mid" %]
-				[% END %]
-				[% IF more.$i_c.$j_c %]
-					[% class = "more_info " _  class %]
-				[% END %]
-				[% IF attrs.$i_c.$j_c.class %]
-					[% class = class _ " " _ attrs.$i_c.$j_c.class %]
-				[% END %]
-				[% attrs.$i_c.$j_c.delete('class') %]
-				[% IF class.length != 0 %]
-					class="[% class %]" 
-				[% END %]
-				[% FOREACH att IN attrs.$i_c.$j_c.keys %]
-					[% att %]="[% attrs.$i_c.$j_c.$att %]" 
-				[% END %]
-			>[% IF myformat %][% j | format(myformat) %][% ELSE %][% j %][% END %]
-				[% IF more.$i_c.$j_c %]
-					<span>[% more.$i_c.$j_c %]</span> 
-				[% END %]
-			</td> 
-			[% j_c = j_c + 1 %]
-		[% END %]
-		</tr>
-		[% i_c = i_c + 1 %]
-	[% END %]
+  <tr>
+    <th class="empty"> </th>
+      [% FOREACH i IN cols %]
+        <th> <span class="vertical">[% i -%]</span></th>
+      [% END %]
+  </tr>
+  [% i_c = 0 %]
+  [% FOREACH i IN vals %]
+    <tr>
+      <td class="fst">[% lines.shift -%]</td>
+        [% j_c = 0 %]
+        [% FOREACH j IN i %]
+          <td
+            [% class = "" %]
+            [% IF diagonal AND i_c == j_c %]
+              [% class = "mid" %]
+            [% END %]
+            [% IF more.$i_c.$j_c %]
+              [% class = "more_info " _  class %]
+            [% END %]
+            [% IF attrs.$i_c.$j_c.class %]
+              [% class = class _ " " _ attrs.$i_c.$j_c.class %]
+            [% END %]
+            [% attrs.$i_c.$j_c.delete('class') %]
+            [% IF class.length != 0 %] class="[% class %]" [% END %]
+            [% FOREACH att IN attrs.$i_c.$j_c.keys %]
+              [% att %]="[% attrs.$i_c.$j_c.$att %]" 
+            [% END %]
+            >[% IF myformat %][% j | format(myformat) %][% ELSE %][% j %][% END %]
+              [% IF more.$i_c.$j_c %]
+                <span>[% more.$i_c.$j_c %]</span> 
+              [% END %]
+          </td> 
+	      [% j_c = j_c + 1 %]
+        [% END %]
+      </tr>
+      [% i_c = i_c + 1 %]
+  [% END %]
 </table>
 EOT
 ,
 'h' => <<'EOT'
 <div>
-	[% FOREACH i IN list %]
-		<div style="float: left;">[% i %]</div>
-	[% END %]
-	<span style="clear: both;"></div>
+  [% FOREACH i IN list %]
+    <div style="float: left;">[% i %]</div>
+  [% END %]
+  <span style="clear: both;"></div>
 </div>
 EOT
 ,
 'v' => <<'EOT'
 [% FOREACH i IN list %]
-	<div>[% i %]</div>
+  <div>[% i %]</div>
 [% END %]
 EOT
-
 };
 
-=head2 _template_modified
-
-TODO
-
-=cut
-
 sub _template_modified {
-    my($self,$path) = @_;
+  my($self,$path) = @_;
 
-   return 1;
+  return 1;
 }
-
-=head2 _template_content
-
-TODO
-
-=cut
 
 sub _template_content {
   my ($self, $path) = @_;
@@ -181,11 +166,12 @@ sub _template_content {
   $path = basename($path);;
   $self->debug("get $path") if $self->{DEBUG};
 
-   my $data = $templates->{$path};
-   my $error = "error: $path not found";
-   my $mod_date = 1;
+  my $data = $templates->{$path};
+  my $error = "error: $path not found";
+  my $mod_date = 1;
 
-   return $data;
+  return $data;
 }
 
-1; # End of HTML::Auto
+1;
+
