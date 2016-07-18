@@ -1,5 +1,6 @@
 package HTML::Auto::Templates;
 # ABSTRACT: stores HTML::Auto templates
+
 use base qw/Template::Provider/;
 
 use warnings;
