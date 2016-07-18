@@ -1,22 +1,11 @@
 package HTML::Auto::Templates;
+# ABSTRACT: stores HTML::Auto templates
 use base qw/Template::Provider/;
 
 use warnings;
 use strict;
 
 use File::Basename;
-
-=head1 NAME
-
-HTML::Auto::Templates - this module stores HTML::Auto templates
-
-=head1 VERSION
-
-Version 0.07
-
-=cut
-
-our $VERSION = '0.07';
 
 my $templates = {
 
@@ -197,65 +186,5 @@ sub _template_content {
 
    return $data;
 }
-
-
-=head1 AUTHOR
-
-Nuno Carvalho, C<< <smash at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-html-auto at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=HTML-Auto>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc HTML::Auto
-
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=HTML-Auto>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/HTML-Auto>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/HTML-Auto>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/HTML-Auto/>
-
-=back
-
-
-=head1 ACKNOWLEDGEMENTS
-
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2012 Project Natura.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
-
-
-=cut
 
 1; # End of HTML::Auto

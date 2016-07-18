@@ -1,152 +1,15 @@
 package HTML::Auto;
+# ABSTRACT: automatic write HTML for common elements
 
 use warnings;
 use strict;
 
 use Template;
 use HTML::Auto::Templates;
-use Data::Dumper;
 
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(matrix h v);
-
-=encoding utf-8
-
-=head1 NAME
-
-HTML::Auto - automatic write HTML for common elements
-
-=head1 VERSION
-
-Version 0.07
-
-=cut
-
-our $VERSION = '0.07';
-
-
-=head1 SYNOPSIS
-
-Simple example:
-
-  use HTML::Auto qw/matrix h v/;
-
-  my @cols = qw/c1 c2 c3 c4 c5/;
-  my @lines = qw/l1 l2 l3 l4 l5/;
-  my $data =
-     [ [1,2,3,4,5],
-       [6,7,8,9,0],
-       [1,1,1,1,1],
-       [2,2,2,2,2],
-       [3,3,3,3,3] ];
-
-  my $m = matrix(\@cols,\@lines,$data);
-
-  print v(
-          h($m,$m,$m),
-          h($m,$m),
-        );
-
-Using attributes:
-
-  use HTML::Auto qw/matrix h v/;
-
-  my @cols = qw/c1 c2/;
-  my @lines = qw/l1 l2/;
-  my $data =
-     [
-       [
-         {v => 1, a => { style => 'background: green'}},
-         2
-       ],
-       [
-         {v => 3, a => {class => 'foo'}},
-         {v => 4, a => {style => 'color: red'}}
-       ]
-     ];
-
-  my $m = matrix(\@cols,\@lines,$data);
-
-  print v(
-          h($m)
-        );
-
-With mouse-over span:
-
-  use HTML::Auto qw/matrix h v/;
-
-  my @cols = qw/c1 c2/;
-  my @lines = qw/l1 l2/;
-  my $data =
-     [[1,2],
-	  [3,
-	  { v=> 4,
-	    more_info => "This is a pop-up!"
-	  }]
-	 ];
-
-
-  my $m = matrix(\@cols,\@lines,$data);
-
-  print v(
-          h($m)
-        );
-
-Passing additional CSS:
-
-  use HTML::Auto qw/matrix h v/;
-
-  my @cols = qw/c1 c2/;
-  my @lines = qw/l1 l2/;
-  my $data =
-     [
-       [
-         {v => 1, a => { class => 'warn'}},
-         2
-       ],
-       [3,4]
-     ];
-
-  my $options = { css => '.warn { background-color: yellow !important; }' };
-
-  my $m = matrix(\@cols,\@lines,$data,$options);
-
-  print v(
-          h($m)
-        );
-
-
- 
-=head1 FUNCTIONS
-
-=head2 matrix
-
-Build a matrix. Some options are available to pass to the matrix function:
-
-=over 6
-
-=item C<diagonal>
-
-Highlight the diagonal of the matrix.
-
-  my $m = matrix(\@cols,\@lines,$data, {diagonal => 1});
-
-=item C<format>
-
-Pass a string to be used by the C<format> filter in the TT2 template.
-
-  my $m = matrix(\@cols,\@lines,$data, {format => '%.6f'});
-
-=item C<ucfirst>
-
-Option to uppercase first letter in columns and lines labels.
-
-  my $m = matrix(\@cols,\@lines,$data, {ucfirst => 1});
-
-=back
-
-=cut
 
 sub matrix {
 	my ($cols,$lines,$data,$options) = @_;
@@ -203,12 +66,6 @@ sub matrix {
 	__process($template_name, $vars);
 }
 
-=head2 h
-
-A function to allow horizontal composition.
-
-=cut
-
 sub h {
 	my (@list) = @_;
 
@@ -219,12 +76,6 @@ sub h {
 
 	__process($template_name, $vars);
 }
-
-=head2 v
-
-A function to allow vertical composition.
-
-=cut
 
 sub v {
    my (@list) = @_;
@@ -253,64 +104,132 @@ sub __process {
 	$html;
 }
 
-=head1 AUTHOR
+1;
 
-Nuno Carvalho, C<< <smash at cpan.org> >>
-André Santos, C<< <andrefs at cpan.org> >>
+__END__
 
-=head1 BUGS
+=encoding utf-8
 
-Please report any bugs or feature requests to C<bug-html-auto at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=HTML-Auto>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+=head1 SYNOPSIS
+
+Simple example:
+
+  use HTML::Auto qw/matrix h v/;
+
+  my @cols = qw/c1 c2 c3 c4 c5/;
+  my @lines = qw/l1 l2 l3 l4 l5/;
+  my $data =
+     [ [1,2,3,4,5],
+       [6,7,8,9,0],
+       [1,1,1,1,1],
+       [2,2,2,2,2],
+       [3,3,3,3,3] ];
+
+  my $m = matrix(\@cols,\@lines,$data);
+
+  print v(
+          h($m,$m,$m),
+          h($m,$m),
+        );
+
+Using attributes:
+
+  use HTML::Auto qw/matrix h v/;
+
+  my @cols = qw/c1 c2/;
+  my @lines = qw/l1 l2/;
+  my $data =
+     [
+       [
+         {v => 1, a => { style => 'background: green'}},
+         2
+       ],
+       [
+         {v => 3, a => {class => 'foo'}},
+         {v => 4, a => {style => 'color: red'}}
+       ]
+     ];
+
+  my $m = matrix(\@cols,\@lines,$data);
+
+  print v(
+          h($m)
+        );
+
+With mouse-over span:
+
+  use HTML::Auto qw/matrix h v/;
+
+  my @cols = qw/c1 c2/;
+  my @lines = qw/l1 l2/;
+  my $data =
+     [[1,2],
+    [3,
+    { v=> 4,
+      more_info => "This is a pop-up!"
+    }]
+   ];
 
 
+  my $m = matrix(\@cols,\@lines,$data);
 
+  print v(
+          h($m)
+        );
 
-=head1 SUPPORT
+Passing additional CSS:
 
-You can find documentation for this module with the perldoc command.
+  use HTML::Auto qw/matrix h v/;
 
-    perldoc HTML::Auto
+  my @cols = qw/c1 c2/;
+  my @lines = qw/l1 l2/;
+  my $data =
+     [
+       [
+         {v => 1, a => { class => 'warn'}},
+         2
+       ],
+       [3,4]
+     ];
 
+  my $options = { css => '.warn { background-color: yellow !important; }' };
 
-You can also look for information at:
+  my $m = matrix(\@cols,\@lines,$data,$options);
 
-=over 4
+  print v(
+          h($m)
+        );
 
-=item * RT: CPAN's request tracker
+=func matrix
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=HTML-Auto>
+Build a matrix. Some options are available to pass to the matrix function:
 
-=item * AnnoCPAN: Annotated CPAN documentation
+=over 6
 
-L<http://annocpan.org/dist/HTML-Auto>
+=item C<diagonal>
 
-=item * CPAN Ratings
+Highlight the diagonal of the matrix.
 
-L<http://cpanratings.perl.org/d/HTML-Auto>
+  my $m = matrix(\@cols,\@lines,$data, {diagonal => 1});
 
-=item * Search CPAN
+=item C<format>
 
-L<http://search.cpan.org/dist/HTML-Auto/>
+Pass a string to be used by the C<format> filter in the TT2 template.
+
+  my $m = matrix(\@cols,\@lines,$data, {format => '%.6f'});
+
+=item C<ucfirst>
+
+Option to uppercase first letter in columns and lines labels.
+
+  my $m = matrix(\@cols,\@lines,$data, {ucfirst => 1});
 
 =back
 
+=func h
 
-=head1 ACKNOWLEDGEMENTS
+A function to allow horizontal composition.
 
+=func v
 
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2012 Project Natura.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
-
-
-=cut
-
-1; # End of HTML::Auto
+A function to allow vertical composition.
