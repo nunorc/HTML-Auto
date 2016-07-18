@@ -1,6 +1,6 @@
 # NAME
 
-HTML::Auto - automatic write HTML for common elements
+HTML::Auto - write HTML for common elements
 
 # VERSION
 
@@ -131,7 +131,7 @@ A function to allow vertical composition.
 # AUTHORS
 
 - Nuno Carvalho <smash@cpan.org>
-- André Santos <andrefs at cpan.org>
+- André Santos <andrefs@cpan.org>
 
 # COPYRIGHT AND LICENSE
 

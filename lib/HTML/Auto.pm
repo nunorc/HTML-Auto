@@ -1,5 +1,5 @@
 package HTML::Auto;
-# ABSTRACT: automatic write HTML for common elements
+# ABSTRACT: write HTML for common elements
 
 use warnings;
 use strict;
@@ -12,96 +12,93 @@ our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(matrix h v);
 
 sub matrix {
-	my ($cols,$lines,$data,$options) = @_;
+  my ($cols,$lines,$data,$options) = @_;
 
-	if ($options->{ucfirst}) {
-		foreach (@$cols) {
-			$_ = ucfirst($_);
-		}
-		foreach (@$lines) {
-			$_ = ucfirst($_);
-		}
-	}
+  if ($options->{ucfirst}) {
+    foreach (@$cols, @$lines) {
+      $_ = ucfirst($_);
+    }
+  }
 
-	my $vals = [];
-	my $attrs = [];
-	my $more = [];
+  my $vals = [];
+  my $attrs = [];
+  my $more = [];
 
-	foreach my $row (@$data){
-		my $vrow = [];
-		my $arow = [];
-		my $mrow = [];
-		foreach(@$row){
-			if (ref($_)){
-				push @$vrow, $_->{v};
-				push @$arow, $_->{a};
-				push @$mrow, $_->{more_info};
-			}
-			else {
-				push @$vrow, $_;
-				push @$arow, undef;
-				push @$mrow, undef;
-			}
-		}
-		push @$vals, $vrow;
-		push @$attrs, $arow;
-		push @$more, $mrow;
-	}
+  foreach my $row (@$data) {
+    my $vrow = [];
+    my $arow = [];
+    my $mrow = [];
+    foreach(@$row){
+      if (ref($_)){
+        push @$vrow, $_->{v};
+        push @$arow, $_->{a};
+        push @$mrow, $_->{more_info};
+      }
+      else {
+        push @$vrow, $_;
+        push @$arow, undef;
+        push @$mrow, undef;
+      }
+    }
+    push @$vals, $vrow;
+    push @$attrs, $arow;
+    push @$more, $mrow;
+  }
 
-	my $vars = {
-			cols => $cols,
-			lines => $lines,
-			vals => $vals,
-			attrs => $attrs,
-			more => $more,
-		};
-	$vars->{css} = $options->{css}
-		if $options->{css};
-	$vars->{myformat} = $options->{format}
-		if $options->{format};
-	$vars->{diagonal} = $options->{diagonal}
-		if $options->{diagonal};
+  my $vars = {
+      cols  => $cols,
+      lines => $lines,
+      vals  => $vals,
+      attrs => $attrs,
+      more  => $more,
+    };
+  $vars->{css} = $options->{css}
+    if $options->{css};
+  $vars->{myformat} = $options->{format}
+    if $options->{format};
+  $vars->{diagonal} = $options->{diagonal}
+    if $options->{diagonal};
 
-	my $template_name = 'matrix';
-	__process($template_name, $vars);
+  my $template_name = 'matrix';
+  __process($template_name, $vars);
 }
 
 sub h {
-	my (@list) = @_;
+  my (@list) = @_;
 
-	my $vars = {
-			list => [@list],
-		};
-	my $template_name = 'h';
+  my $vars = {
+      list => [@list],
+    };
+  my $template_name = 'h';
 
-	__process($template_name, $vars);
+  __process($template_name, $vars);
 }
 
 sub v {
-   my (@list) = @_;
+  my (@list) = @_;
 
-   my $vars = {
-         list => [@list],
-      };
-   my $template_name = 'v';
+  my $vars = {
+      list => [@list],
+  };
+  my $template_name = 'v';
 
-   __process($template_name, $vars);
+  __process($template_name, $vars);
 }
 
 sub __process {
-	my ($template_name,$vars) = @_;
+  my ($template_name,$vars) = @_;
 
-	# build html from template
-   my $template_config = {
-         INCLUDE_PATH => [ 'templates' ],
-      };
-   my $template = Template->new({
-        LOAD_TEMPLATES => [ HTML::Auto::Templates->new($template_config) ],
-   });
-	my $html;
-   $template->process($template_name, $vars, \$html);
+  # build html from template
+  my $template_config = {
+      INCLUDE_PATH => [ 'templates' ],
+    };
+  my $template = Template->new({
+      LOAD_TEMPLATES => [ HTML::Auto::Templates->new($template_config) ],
+    });
+  my $html;
+  $template->process($template_name, $vars, \$html);
 
-	$html;
+  return $html;
 }
 
 1;
